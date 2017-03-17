@@ -91,4 +91,4 @@ end
 #p Benchmark.measure{Moblile_keypad_decoder.new.init('2282668687')}
 
 # output with benchmark
-Moblile_keypad_decoder.new.init('228266868701')
+Moblile_keypad_decoder.new.init('2282668687')
