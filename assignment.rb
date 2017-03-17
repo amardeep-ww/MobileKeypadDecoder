@@ -1,6 +1,5 @@
 require 'set'
 require 'benchmark'
-require 'pry'
 
 class Moblile_keypad_decoder
   @@letters_hash = {
@@ -86,4 +85,4 @@ end
 #p Benchmark.measure{Moblile_keypad_decoder.new.init('2282668687')}
 
 # output with benchmark
-Moblile_keypad_decoder.new.init('2282668625')
+Moblile_keypad_decoder.new.init('2282668687')
