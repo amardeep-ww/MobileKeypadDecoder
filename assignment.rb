@@ -70,6 +70,8 @@ class Moblile_keypad_decoder
     combinations.each do |combination|
       arr = []
       words = find_all_permutations(combination, decoded_words)
+      arr.push(words) unless words.include?([])
+      result.concat(arr) unless arr.empty?
     end
   end
 
