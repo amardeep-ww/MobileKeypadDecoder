@@ -14,9 +14,15 @@ class Moblile_keypad_decoder
   }
 
   def init(phone_number)
-    combinations = split_number(phone_number)
-    decoded_words = load_dictionary
-    decode(combinations, decoded_words)
+    if /\A[2-9]{10}\z/.match(phone_number)
+      combinations = split_number(phone_number)
+      decoded_words = load_dictionary
+      decode(combinations, decoded_words)
+    else
+      str = "Invalid number...mobile shuld be only 10 digit as well as should not contain 0 and 1"
+      puts str
+      str
+    end
   end
 
   def split_number(phone_number)
@@ -85,4 +91,4 @@ end
 #p Benchmark.measure{Moblile_keypad_decoder.new.init('2282668687')}
 
 # output with benchmark
-Moblile_keypad_decoder.new.init('2282668687')
+Moblile_keypad_decoder.new.init('228266868701')
