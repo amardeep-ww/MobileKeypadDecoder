@@ -15,6 +15,7 @@ class Moblile_keypad_decoder
 
   def initialize(phone_number)
     combinations = split_number(phone_number)
+    decoded_words = load_dictionary
   end
 
   def split_number(phone_number)
@@ -30,6 +31,11 @@ class Moblile_keypad_decoder
 
   def array_split(phone_number, length)
     [phone_number.slice(0, length), phone_number.slice(length, 10 - length)]
+  end
+
+  def load_dictionary
+    d = File.read('dictionary.txt').downcase.split("\n")
+    binding.pry
   end
 
 end
