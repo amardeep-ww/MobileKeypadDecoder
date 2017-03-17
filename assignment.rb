@@ -1,7 +1,8 @@
+require 'set'
+require 'benchmark'
 require 'pry'
 
 class Moblile_keypad_decoder
-
   @@letters_hash = {
     '2' => %w(a b c),
     '3' => %w(d e f),
@@ -13,7 +14,7 @@ class Moblile_keypad_decoder
     '9' => %w(w x y z)
   }
 
-  def initialize(phone_number)
+  def init(phone_number)
     combinations = split_number(phone_number)
     decoded_words = load_dictionary
     decode(combinations, decoded_words)
@@ -35,7 +36,7 @@ class Moblile_keypad_decoder
   end
 
   def load_dictionary
-    File.read('dictionary.txt').downcase.split("\n")
+    Set.new(File.read('dictionary.txt').downcase.split("\n"))
   end
 
   def find_all_permutations(combination, decoded_words)
@@ -73,7 +74,16 @@ class Moblile_keypad_decoder
       arr.push(words) unless words.include?([])
       result.concat(arr) unless arr.empty?
     end
+    final_result = []
+    result.each do |f|
+      final_result.concat(f[0].product(*f[1..-1]))
+    end
+    p final_result
   end
-
 end
-Moblile_keypad_decoder.new('2282668625')
+
+# out put with benchmark
+#p Benchmark.measure{Moblile_keypad_decoder.new.init('2282668687')}
+
+# output with benchmark
+Moblile_keypad_decoder.new.init('2282668625')
